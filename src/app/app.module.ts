@@ -13,13 +13,15 @@ import { AddressDialogComponent } from './address-dialog/address-dialog.componen
 import {MatDialogModule} from '@angular/material/dialog';
 import { CompanyDialogComponent } from './company-dialog/company-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserTableComponent,
     AddressDialogComponent,
-    CompanyDialogComponent
+    CompanyDialogComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,

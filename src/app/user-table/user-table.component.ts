@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { AddressDialogComponent } from '../address-dialog/address-dialog.component';
 import { CompanyDialogComponent } from '../company-dialog/company-dialog.component';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -11,19 +13,22 @@ import { UsersService } from '../users.service';
 })
 export class UserTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['select','ID', 'name', 'username', 'company', 'address', 'phone', 'website', 'action'];
+  displayedColumns: string[] = ['position', 'select', 'name', 'username', 'ID', 'company', 'address', 'phone', 'website', 'action'];
+  dataSource = new MatTableDataSource<any>([]);
   all: boolean = false
 
   constructor(public u: UsersService,
-    public dialog: MatDialog) { 
-    }
+    public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
-
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => this.dataSource.data = json)
   }
 
   selectAll() {
-    this.u.data.forEach((d:any) => {
+    this.u.data.forEach((d: any) => {
       d.selected = this.all
     })
   }
@@ -31,7 +36,7 @@ export class UserTableComponent implements OnInit {
   selectOne(selected: boolean) {
     if (selected) {
       let all = true
-      this.u.data.forEach((d:any) => {
+      this.u.data.forEach((d: any) => {
         if (!d.selected) {
           all = false
         }
@@ -50,4 +55,23 @@ export class UserTableComponent implements OnInit {
     this.dialog.open(CompanyDialogComponent)
   }
 
+  openDeleteDialog(index: number) {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '250px',
+      data: [],
+    });
+
+    dialogRef.afterClosed().subscribe(deleted => {
+      if (deleted)
+        this.u.delete(index)
+      this.dataSource.data = this.u.data
+    })
+  }
+
+  deleteSelected() {
+    this.u.data = this.u.data.filter((d: any) =>
+      !d.selected
+    )
+    this.dataSource.data = this.u.data
+  }
 }

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UsersService {
 
-  data: any
+  data: any=[]
   constructor() { 
     this.getData()
   }
@@ -14,6 +14,9 @@ export class UsersService {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(json => this.data = json)
- 
+  }
+
+  delete(index:number){
+    this.data.splice(index, 1);
   }
 }

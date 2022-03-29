@@ -1,0 +1,38 @@
+.header{
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid #3F51B5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerText{
+    width: 30wh;
+    height: 60px;
+    font-size: 25px;
+    font-weight:bold;
+    color: #3F51B5;
+    margin: 30px 0 0 30px;
+}
+
+.btnDiv {
+  margin-right: 70px;
+}
+
+.btnDiv button{
+  margin-right: 30px;
+}
+
+table {
+    width: 100%;
+  }
+  
+.mat-form-field {
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+table button{
+  font-size: 12px;
+}

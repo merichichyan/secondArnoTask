@@ -1,80 +1,77 @@
 <div class="addUser">
-  <div class="inputDiv">
-    <div class="base">
-      <h3>Base</h3>
-      <mat-form-field appearance="fill">
-        <mat-label>ID</mat-label>
-        <input matInput name="id" [(ngModel)]="user.id" />
-      </mat-form-field>
+  <form>
+    <div class="inputDiv">
+      <div class="base">
+        <h3>Base</h3>
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput name="name" [(ngModel)]="user.name" />
+        </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput name="name" [(ngModel)]="user.name" />
-      </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput name="username" [(ngModel)]="user.username" />
+        </mat-form-field>
+      </div>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Username</mat-label>
-        <input matInput name="username" [(ngModel)]="user.username" />
-      </mat-form-field>
+      <div class="company">
+        <h3>Company</h3>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput name="name" [(ngModel)]="user.company.name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Catch Phrase</mat-label>
+          <input matInput name="catchPhrase" [(ngModel)]="user.company.catchPhrase" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>BS</mat-label>
+          <input matInput name="bs" [(ngModel)]="user.company.bs" />
+        </mat-form-field>
+      </div>
+
+      <div class="address">
+        <h3>Address</h3>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Street</mat-label>
+          <input matInput name="street" [(ngModel)]="user.address.street" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Suite</mat-label>
+          <input matInput name="suite" [(ngModel)]="user.address.suite" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>City</mat-label>
+          <input matInput name="city" [(ngModel)]="user.address.city" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Zip Code</mat-label>
+          <input matInput name="zipcode" [(ngModel)]="user.address.zipcode" />
+        </mat-form-field>
+      </div>
+
+      <div class="geo">
+        <h3>Geo</h3>
+        <mat-form-field appearance="fill">
+          <mat-label>Lat</mat-label>
+          <input matInput name="lat" [(ngModel)]="user.address.geo.lat" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Lng</mat-label>
+          <input matInput name="lng" [(ngModel)]="user.address.geo.lng" />
+        </mat-form-field>
+      </div>
     </div>
 
-    <div class="company">
-      <h3>Company</h3>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput name="name" [(ngModel)]="user.company.name" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Catch Phrase</mat-label>
-        <input matInput name="catchPhrase" [(ngModel)]="user.company.catchPhrase" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>BS</mat-label>
-        <input matInput name="bs" [(ngModel)]="user.company.bs" />
-      </mat-form-field>
-    </div>
-
-    <div class="address">
-      <h3>Address</h3>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Street</mat-label>
-        <input matInput name="street" [(ngModel)]="user.address.street" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Suite</mat-label>
-        <input matInput name="suite" [(ngModel)]="user.address.suite" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>City</mat-label>
-        <input matInput name="city" [(ngModel)]="user.address.city" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Zip Code</mat-label>
-        <input matInput name="zipcode" [(ngModel)]="user.address.zipcode" />
-      </mat-form-field>
-    </div>
-
-    <div class="geo">
-      <h3>Geo</h3>
-      <mat-form-field appearance="fill">
-        <mat-label>Lat</mat-label>
-        <input matInput name="lat" [(ngModel)]="user.address.geo.lat" />
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Lng</mat-label>
-        <input matInput name="lng" [(ngModel)]="user.address.geo.lng" />
-      </mat-form-field>
-    </div>
-  </div>
-
-  <button mat-button color="warn" (click)="close()">Close</button>
-  <button mat-button color="primary" (click)="add()">Add</button>
+    <button mat-button color="warn"  mat-dialog-close>Close</button>
+    <button mat-button color="primary" (click)="add()">Add</button>
+  </form>
 </div>

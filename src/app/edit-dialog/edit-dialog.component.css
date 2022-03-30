@@ -1,0 +1,13 @@
+.inputDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.editUser div{
+    margin-left: 10px;
+}
+
+button{
+    float: right;
+    margin: 5px;
+}

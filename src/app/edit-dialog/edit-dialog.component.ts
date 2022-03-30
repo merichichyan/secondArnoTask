@@ -1,15 +1,14 @@
-import { JsonpClientBackend } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserTableComponent } from '../user-table/user-table.component';
 import { UsersService } from '../users.service';
 
 @Component({
-  selector: 'app-add-new-dialog',
-  templateUrl: './add-new-dialog.component.html',
-  styleUrls: ['./add-new-dialog.component.css'],
+  selector: 'app-edit-dialog',
+  templateUrl: './edit-dialog.component.html',
+  styleUrls: ['./edit-dialog.component.css']
 })
-export class AddNewDialogComponent implements OnInit {
+export class EditDialogComponent implements OnInit {
   user = {
     name: '',
     username: '',
@@ -25,20 +24,18 @@ export class AddNewDialogComponent implements OnInit {
     website: ''
   }
   constructor(
-    private dialogRef: MatDialogRef<UserTableComponent>,
-    private u: UsersService
-  ) { }
+      private u:UsersService,
+      private dialogRef: MatDialogRef<UserTableComponent>) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
-  add() {
+  edit(){
     this.u.add(this.user).subscribe({
       next: (data) => {
-        this.u.data.push(data)
-        this.dialogRef.close();
+        this.dialogRef.close(data);
       },
       error: (e) => console.error(e.message),
     })
-
   }
 }

@@ -1,48 +1,33 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, Observable, throwError } from 'rxjs';
 import { User } from './user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  data: any = [];
-  constructor() {}
+  data: any[] = [];
+  url: string = 'https://jsonplaceholder.typicode.com/users'
+  constructor(private http: HttpClient) {}
 
-  getData() {
-    return fetch('https://jsonplaceholder.typicode.com/users');
+  getData(): Observable<any> {
+    return this.http.get<any>(this.url).pipe(catchError(this.errorHandler))
   }
 
-  addUser() {
-    let model = {
-      name: 'Armen',
-      username: 'username',
-      email: 'armen@gmail.com',
-      company: {
-        name: 'Hoeger LLC',
-        catchPhrase: 'Centralized empowering task-force',
-        bs: 'target end-to-end models',
-      },
-      address: {
-        street:'Kattie Turnpike',
-        suite: 'Suite 198',
-        city: 'Lebsackbury',
-        zipcode: '31428-2261',
-        geo_lat: '-38.2386',
-        geo_lng: '57.2232'
-      },
-      phone: '123',
-      website: 'www.ww.com',
-    };
-    return fetch('https://jsonplaceholder.typicode.com/users', {
-      method: 'POST',
-      body: JSON.stringify(model),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+  delete(id: number): Observable<any> {
+    return this.http.delete(this.url+`/${id}`).pipe(catchError(this.errorHandler))
   }
 
-  delete(index: number) {
-    this.data.splice(index, 1);
+  update(user: any): Observable<any> {
+    return this.http.put(this.url+`/${user.id}`, user).pipe(catchError(this.errorHandler))
+  }
+
+  add(user: any): Observable<any> {
+    return this.http.post(this.url, user).pipe(catchError(this.errorHandler)) 
+  }
+
+  errorHandler(error: HttpErrorResponse){
+    return throwError(() => new Error(error.message || "Server error"))
   }
 }

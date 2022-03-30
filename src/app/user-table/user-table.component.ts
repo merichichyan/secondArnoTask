@@ -5,6 +5,8 @@ import { AddNewDialogComponent } from '../add-new-dialog/add-new-dialog.componen
 import { AddressDialogComponent } from '../address-dialog/address-dialog.component';
 import { CompanyDialogComponent } from '../company-dialog/company-dialog.component';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
+import { User } from '../user';
 import { UsersService } from '../users.service';
 
 @Component({
@@ -28,18 +30,17 @@ export class UserTableComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource<any>([]);
   all: boolean = false;
-
+  user:User
   constructor(public u: UsersService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.u
-      .getData()
-      .then((res) => res.json())
-      .then((res) => {
-        this.u.data = res;
+    this.u.getData().subscribe({
+      next: (data) => {
+        this.u.data = data
         this.dataSource.data = this.u.data
-      })
-      .catch((err) => console.log(err));
+      },
+      error: (e) => console.error(e.message),
+    })
   }
 
   selectAll() {
@@ -77,8 +78,15 @@ export class UserTableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((deleted) => {
-      if (deleted) this.u.delete(index);
-      this.dataSource.data = this.u.data;
+      if (deleted){
+        this.u.delete(this.u.data[index].id).subscribe({
+          next: () => {
+            this.u.data.splice(index, 1);
+            this.dataSource.data = this.u.data;
+          },
+          error: (e) => console.error(e.message),
+        })
+      } 
     });
   }
 
@@ -94,8 +102,16 @@ export class UserTableComponent implements OnInit {
     });
 
 
-    dialogRef.afterClosed().subscribe((user) => {
-      console.log(user)
+    dialogRef.afterClosed().subscribe(() => {
+      this.dataSource.data = this.u.data
+    })
+  }
+  openEditDialog(id:number) {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      width: '1050px',
+      data: [],
+    });
+    dialogRef.afterClosed().subscribe(() => {
       this.dataSource.data = this.u.data
     })
   }

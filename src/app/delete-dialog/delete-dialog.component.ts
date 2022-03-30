@@ -17,7 +17,5 @@ export class DeleteDialogComponent implements OnInit {
   delete() { 
     this.dialogRef.close(true);
   }
-  close() {
-    this.dialogRef.close();
-  }
+  
 }

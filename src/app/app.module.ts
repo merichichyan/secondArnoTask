@@ -17,6 +17,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatInputModule} from '@angular/material/input';
+import { HttpClientModule } from '@angular/common/http';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {MatInputModule} from '@angular/material/input';
     AddressDialogComponent,
     CompanyDialogComponent,
     DeleteDialogComponent,
-    AddNewDialogComponent
+    AddNewDialogComponent,
+    EditDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogModule,
     FormsModule,
     MatDividerModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

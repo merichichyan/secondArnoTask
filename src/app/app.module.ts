@@ -14,6 +14,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CompanyDialogComponent } from './company-dialog/company-dialog.component';
 import { FormsModule } from '@angular/forms';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     UserTableComponent,
     AddressDialogComponent,
     CompanyDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    AddNewDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatDividerModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

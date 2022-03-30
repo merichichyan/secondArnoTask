@@ -1,0 +1,14 @@
+.inputDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.addUser div{
+    margin-left: 10px;
+}
+
+button{
+    float: right;
+    margin: 5px;
+}
+

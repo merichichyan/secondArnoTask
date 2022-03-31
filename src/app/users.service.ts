@@ -1,7 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { User } from './user';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +19,9 @@ export class UsersService {
   }
 
   update(user: any): Observable<any> {
-    return this.http.put(this.url+`/${user.id}`, user).pipe(catchError(this.errorHandler))
+    console.log(user)
+    console.log(user.id)
+    return this.http.put(this.url+`/users/${user.id}`, user).pipe(catchError(this.errorHandler))
   }
 
   add(user: any): Observable<any> {
@@ -30,4 +31,6 @@ export class UsersService {
   errorHandler(error: HttpErrorResponse){
     return throwError(() => new Error(error.message || "Server error"))
   }
+
+
 }

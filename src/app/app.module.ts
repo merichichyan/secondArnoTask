@@ -12,7 +12,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { AddressDialogComponent } from './address-dialog/address-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CompanyDialogComponent } from './company-dialog/company-dialog.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
 import {MatDividerModule} from '@angular/material/divider';
@@ -42,7 +42,8 @@ import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
     FormsModule,
     MatDividerModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

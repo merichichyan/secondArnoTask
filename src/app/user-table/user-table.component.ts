@@ -30,17 +30,17 @@ export class UserTableComponent implements OnInit {
   ];
   dataSource = new MatTableDataSource<any>([]);
   all: boolean = false;
-  user:User
+  user: User;
   constructor(public u: UsersService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.u.getData().subscribe({
       next: (data) => {
-        this.u.data = data
-        this.dataSource.data = this.u.data
+        this.u.data = data;
+        this.dataSource.data = this.u.data;
       },
       error: (e) => console.error(e.message),
-    })
+    });
   }
 
   selectAll() {
@@ -78,15 +78,15 @@ export class UserTableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((deleted) => {
-      if (deleted){
+      if (deleted) {
         this.u.delete(this.u.data[index].id).subscribe({
           next: () => {
             this.u.data.splice(index, 1);
             this.dataSource.data = this.u.data;
           },
           error: (e) => console.error(e.message),
-        })
-      } 
+        });
+      }
     });
   }
 
@@ -97,22 +97,30 @@ export class UserTableComponent implements OnInit {
 
   openAddNewDialog() {
     const dialogRef = this.dialog.open(AddNewDialogComponent, {
-      width: '1050px',
+      width: '1070px',
       data: [],
     });
 
-
     dialogRef.afterClosed().subscribe(() => {
-      this.dataSource.data = this.u.data
-    })
+      this.dataSource.data = this.u.data;
+    });
   }
-  openEditDialog(id:number) {
+  openEditDialog(i: number) {
+     
     const dialogRef = this.dialog.open(EditDialogComponent, {
-      width: '1050px',
-      data: [],
+      width: '1070px',
+      data:  {
+        name:this.u.data[i].name ,
+        surname: this.u.data[i].surname,
+        street: this.u.data[i].street,
+      },
     });
-    dialogRef.afterClosed().subscribe(() => {
-      this.dataSource.data = this.u.data
-    })
+
+    dialogRef.afterClosed().subscribe((user) => {
+      if (user) {
+        this.u.update(user);
+        this.dataSource.data = this.u.data;
+      }
+    });
   }
 }

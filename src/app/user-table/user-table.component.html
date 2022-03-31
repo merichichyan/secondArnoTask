@@ -62,7 +62,7 @@
     <ng-container matColumnDef="address">
       <th mat-header-cell *matHeaderCellDef> Address </th>
       <td mat-cell *matCellDef="let element">{{element.address.city}} 
-        <button mat-button color="primary"  (click)="openAddressDialog()">Full address</button>
+        <button mat-button color="primary" *ngIf="element.address.city" (click)="openAddressDialog()">Full address</button>
       </td>
     </ng-container>
 
